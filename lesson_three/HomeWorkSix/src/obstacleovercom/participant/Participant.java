@@ -2,7 +2,7 @@ package obstacleovercom.participant;
 
 import obstacleovercom.obstacle.Obstacle;
 
-public abstract class Participant {
+public class Participant {
 
     private String name;
     private int maxRun;
@@ -14,9 +14,13 @@ public abstract class Participant {
         this.maxJump = maxJump;
     }
 
-    public abstract void run(Obstacle obstacle);
+    public void run(Obstacle obstacle) {
+        System.out.println("Participant runs");
+    }
 
-    public abstract void jump(Obstacle obstacle);
+    public void jump(Obstacle obstacle) {
+        System.out.println("Participant jumps");
+    }
 
     public String getName() {
         return name;

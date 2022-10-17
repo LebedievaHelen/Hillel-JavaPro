@@ -10,9 +10,11 @@ public class Human extends Participant {
 
     @Override
     public void run(Obstacle obstacle) {
+        super.run(obstacle);
     }
 
     @Override
     public void jump(Obstacle obstacle) {
+        super.jump(obstacle);
     }
 }
