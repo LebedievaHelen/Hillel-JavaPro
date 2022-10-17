@@ -71,10 +71,8 @@ public class HomeWorkApp {
     }
 
     public static void stringsCount(String string, int e) {
-        int count = 0;
-        while (count < e) {
+        for (int i = 0; i < e; i++) {
             System.out.println(string);
-            count++;
         }
     }
 
