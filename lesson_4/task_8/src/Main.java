@@ -3,8 +3,8 @@ public class Main {
     public static void main(String[] args) {
         // Метод количество символов в строке
         String string = "hillel";
-        char l = 'l';
-        findSymbolOccurrence(string, l);
+        char ch = 'l';
+        System.out.println(findSymbolOccurrence(string, ch));
 
         //Метод является ли подстрока частью строки
         String source = "sometimes";
@@ -20,31 +20,29 @@ public class Main {
         System.out.println(isPalindrome(string2));
     }
 
-    public static void findSymbolOccurrence(String string, char l) {
-        int count = 0;
+    public static int findSymbolOccurrence(String string, char ch) {
+        int charCount = 0;
         for (int i = 0; i < string.length(); i++) {
-            l = string.charAt(i);
-            if (l == 'l') {
-                count++;
+            if (string.charAt(i) == ch) {
+                charCount++;
             }
+        } return charCount;
+    }
+
+        public static int findWordPosition (String source, String target){
+            if (source.contains(target)) {
+                char c = target.charAt(0);
+                return source.indexOf(c);
+            }
+            return -1;
         }
-        System.out.println(count);
-    }
 
-    public static int findWordPosition(String source, String target) {
-        if (source.contains(target)) {
-            char c = target.charAt(0);
-            return source.indexOf(c);
+        public static StringBuilder stringReverse (String string){
+            return new StringBuilder(string).reverse();
         }
-        return -1;
-    }
 
-    public static StringBuilder stringReverse(String string) {
-        return new StringBuilder(string).reverse();
+        public static boolean isPalindrome (String string){
+            StringBuilder newString = new StringBuilder(string).reverse();
+            return string.equalsIgnoreCase(String.valueOf(newString));
+        }
     }
-
-    public static boolean isPalindrome(String string) {
-        StringBuilder newString = new StringBuilder(string).reverse();
-        return string.equalsIgnoreCase(String.valueOf(newString));
-    }
-}
