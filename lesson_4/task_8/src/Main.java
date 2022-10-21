@@ -26,23 +26,24 @@ public class Main {
             if (string.charAt(i) == ch) {
                 charCount++;
             }
-        } return charCount;
+        }
+        return charCount;
     }
 
-        public static int findWordPosition (String source, String target){
-            if (source.contains(target)) {
-                char c = target.charAt(0);
-                return source.indexOf(c);
-            }
-            return -1;
+    public static int findWordPosition(String source, String target) {
+        if (source.contains(target)) {
+            char c = target.charAt(0);
+            return source.indexOf(c);
         }
-
-        public static StringBuilder stringReverse (String string){
-            return new StringBuilder(string).reverse();
-        }
-
-        public static boolean isPalindrome (String string){
-            StringBuilder newString = new StringBuilder(string).reverse();
-            return string.equalsIgnoreCase(String.valueOf(newString));
-        }
+        return -1;
     }
+
+    public static StringBuilder stringReverse(String string) {
+        return new StringBuilder(string).reverse();
+    }
+
+    public static boolean isPalindrome(String string) {
+        StringBuilder newString = new StringBuilder(string).reverse();
+        return string.equalsIgnoreCase(String.valueOf(newString));
+    }
+}
