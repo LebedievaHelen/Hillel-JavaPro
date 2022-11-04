@@ -21,7 +21,7 @@ public class PetrolStation {
         @Override
         public void run() {
             try {
-                sleep((long) (Math.random() * 7000 + 10000));
+                sleep((long) (Math.random() * 7000 + 3000));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
