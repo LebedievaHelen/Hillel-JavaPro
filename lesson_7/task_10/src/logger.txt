@@ -1,0 +1,5 @@
+[12:54:46 AM] [DEBUG] Message:[Some message]
+[12:55:05 AM] [DEBUG] Message:[Program debugging]
+[12:55:05 AM] [DEBUG] Message:[Some message]
+[12:56:29 AM] [DEBUG] Message:[Program debugging]
+[12:56:29 AM] [DEBUG] Message:[Some message]
