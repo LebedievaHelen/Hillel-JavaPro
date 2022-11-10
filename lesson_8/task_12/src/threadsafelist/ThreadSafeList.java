@@ -1,55 +1,69 @@
 package threadsafelist;
 
-import java.util.ArrayList;
+public class ThreadSafeList<E> implements MyList<E> {
 
-public class ThreadSafeList extends Thread {
+    /* private final MyList<E> list = new ThreadSafeList<>();*/
 
-    public static ArrayList<String> list = new ArrayList<>();
+    private E[] array;
 
-    public static void main(String[] args) {
-        Thread addFlow = new Thread(new AddFlow());
-        Thread removeFlow = new Thread(new RemoveFlow());
-        Thread getFlow = new Thread(new GetFlow());
+    public ThreadSafeList() {
+        array = (E[]) new Object[0];
+    }
 
-        addFlow.start();
-        removeFlow.start();
-        getFlow.start();
-
-        try {
-            addFlow.join();
-            removeFlow.join();
-            getFlow.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    @Override
+    public boolean add(E e) {
+        synchronized (ThreadSafeList.this) {
+            try {
+                E[] newArray = array;
+                array = (E[]) new Object[newArray.length + 1];
+                System.arraycopy(newArray, 0, array, 0, newArray.length);
+                array[array.length - 1] = e;
+                return true;
+            } catch (ClassCastException ex) {
+                ex.printStackTrace();
+            }
+            return false;
         }
     }
 
-    static class AddFlow implements Runnable {
-
-        @Override
-        public void run() {
-            list.add("element 0");
-            list.add("element 1");
-            System.out.println(list);
+    @Override
+    public boolean remove(E o) {
+        synchronized (ThreadSafeList.this) {
+            try {
+                for (int i = 0; i < array.length; i++) {
+                    if (array[i].equals(o)) {
+                        E[] newArray = array;
+                        array = (E[]) new Object[newArray.length - 1];
+                        System.arraycopy(newArray, 0, array, 0, i);
+                        int elementAmount = newArray.length - i - 1;
+                        System.arraycopy(newArray, i + 1, array, i, elementAmount);
+                        return true;
+                    }
+                }
+            } catch (ClassCastException e) {
+                e.printStackTrace();
+            }
+            return false;
         }
     }
 
-    static class RemoveFlow implements Runnable {
-
-        @Override
-        public void run() {
-            list.remove(0);
-            System.out.println(list);
+    @Override
+    public E get(int index) {
+        synchronized (ThreadSafeList.this) {
+            if (index < array.length) {
+                return array[index];
+            } else {
+                throw new IndexOutOfBoundsException("Index " + index + "greater then " + array.length);
+            }
         }
     }
 
-    static class GetFlow implements Runnable {
-
-        @Override
-        public void run() {
-            System.out.println(list.get(0));
-        }
+    @Override
+    public java.util.Iterator iterator() {
+        return new ArrayIterator<>(array);
     }
 }
+
+
 
 
